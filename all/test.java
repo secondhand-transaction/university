@@ -40,3 +40,24 @@ public class HistoryBorrowDAO_1 {
 			e.printStackTrace();
 		}		
 	}
+public void add(Reader1 reader) {
+		try {
+			Connection c = DBHelper.getInstance().getConnection();
+			String sql = "insert into reader values(?,null,?,?,?)";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, reader.getName());
+			ps.setString(2, reader.getPassword());
+			ps.setDouble(3, reader.getFine());
+			ps.setString(4, reader.getEmail());
+			ps.execute();
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				long id = rs.getLong(1);
+				reader.setStunumber(id);
+			}
+			DBHelper.closeConnection(c, ps, rs);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
