@@ -15,15 +15,15 @@ import java.sql.Statement;
  */
 public class DBHelper {
 
-	public String url = "jdbc:mysql://localhost:3306/university?useUnicode=true&characterEncoding=UTF-8";
+	public String url = "jdbc:mysql://localhost:3306/university?serverTimezone=UTC";
 	public String username = "root";
-	public String password = "qwe123";
+	public String password = "123456";
 	public static DBHelper instance = null;
 
 	// 闁俺绻冮棃娆愶拷浣峰敩閻礁娼″▔銊ュ斀閺佺増宓佹惔鎾烩攳閸旑煉绱濇穱婵婄槈濞夈劌鍞介崣顏呭⒔鐞涘奔绔村▎锟�
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
 			e.printStackTrace();
