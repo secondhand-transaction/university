@@ -1,7 +1,11 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
+<%
+	session.setAttribute("user_id", 123);
+%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -36,14 +40,10 @@
 <div class="container-fluid">
   <div class="row ">
   <!--data-toggle collapse 折叠  ul class =collapse 初始折叠 -->
-    <div class="col-md-2 wow slideInDown" id="left"> <a href="#systemSetting"  data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>后台管理 <span class="pull-right glyphicon glyphicon-chevron-down"></span><br/> </a> 
+    <div class="col-md-2 wow slideInDown" id="left">  
       <!--ul id  和 上面a 标签的id对应 所以能够弹出li -->
       <ul id="systemSetting" class="nav nav-pills nav-stacked collapse ">
-        <li><a href="#"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-home"></i>地址管理</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-globe"></i>商品管理</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-edit"></i>图片管理</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志管理</a></li>
+ 
       </ul>
     </br>
      <!--data-toggle collapse 折叠   collapse in 初始不折叠-->
@@ -51,7 +51,7 @@
         <i class="glyphicon glyphicon-fire"></i> 买家中心<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a> 
       <ul class="nav nav-pills nav-stacked collapse in " id="userSetting">
         <li> <a href="#publish" class="ex0 active"> <i class="glyphicon glyphicon-inbox"></i> 我的购物车</a> </li>
-           <li> <a href="#"> <i class="glyphicon glyphicon-gift"></i> 已买到的商品</a> </li>
+           <li> <a href="HistoryGoods.doCui"> <i class="glyphicon glyphicon-gift"></i> 已买到的商品</a> </li>
         <li> <a href="#"> <i class="glyphicon glyphicon-heart"></i> 我的收藏</a> </li>
            <li> <a href="#"> <i class="glyphicon glyphicon-user"></i> 个人资料</a> </li>
 
@@ -74,77 +74,104 @@
     <!-- 显示表格数据 -->
     
     <div class=" col-md-8 publish wow fadeInUp" id="right"><!-- 将数据appendTo tbody 定义id -->
-      <form class="form-horizontal" 
-				method="post" id="form">
+      <form class="form-horizontal" action="publish.doCui"
+				method="post">
         <div class="form-group">
           <label  class="col-sm-2">商品名称:</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="title" name="title" >
+            <input type="text" class="form-control" id="title" name="goods_name">
             <span	class="help-block"></span> </div>
         </div>
         <div class="form-group">
           <label  class="col-sm-2">商品价格:</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="title2" name="title2" >
+            <input type="text" class="form-control" id="title" name="price" >
             <span	class="help-block"></span> </div>
         </div>
-        
         <div class="form-group">
-          <label  class="col-sm-2" >商品详情:</label>
+          <label  class="col-sm-2">商品详情:</label>
           <div class="col-sm-7">
-            <textarea id="title3" name="title3" rows="3" cols="70" name="note"></textarea>
+            <textarea rows="3" cols="70" name="description"></textarea>
             <span	class="help-block"></span> </div>
         </div>
-        
-<!--          <div class="form-group">
+        <div class="form-group">
           <label  class="col-sm-2">商品图片:</label>
           <div class="col-sm-10">
       <input id="file_upload" type="file" class="file" />
           </div>
-        </div>-->
+        </div>
         
-
-					<div id="ShowDiv" name="ShowDiv"></div>
+        <!-- 发布人ID 隐藏-->
        
         <br/>
         <br/>
-					<button class="btn btn-primary  col-sm-2 col-md-offset-2"
-						id="ShowButton" onclick="openResult()">发布</button>
-
-					<button type="reset" class="btn btn-danger col-sm-2 "
-						id="exp_delete_all_btn">重置</button>
+        <button type="submit"  class="btn btn-primary  col-sm-2 col-md-offset-2" id="expaddbtn">发布</button>
+        
+        <button type="reset" class="btn btn-danger col-sm-2 " id="exp_delete_all_btn">重置</button>
       </form>
     </div>
   </div>
 </div>
 </div>
+<script src="js/wow.min.js"></script>
 <script>
+$(function(){
 
-		$(document).ready(function() {
+new WOW().init();
+})
+</script>
+<script>
+$("#file_upload").fileinput({
 
-			$('#exp_delete_all_btn').click(function() {
-				console.log("success");
-				$("input[type='text']").attr('value', "");
-				$("textarea[name='title3']").attr('value', "");
+                language: 'zh', //设置语言
 
-			});
-		});
+                uploadUrl:"http://127.0.0.1/", //上传的地址
 
-		function openResult() { /* 绑定事件 */
-			$.ajax({
-				type : "POST", //传数据的方式
-				url : "publish", //servlet地址
-				data : $('#form').serialize(), //传的数据  form表单 里面的数据
-				success : function(result) { //传数据成功之后的操作   result是servlet传过来的数据  这个函数对result进行处理，让它显示在 输入框中
-					console.log(result);
-				}
-			});
+               allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
 
-		}
+               //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
 
+                uploadAsync: true, //默认异步上传
 
+                showUpload:true, //是否显示上传按钮
 
+                showRemove :true, //显示移除按钮
+
+                showPreview :true, //是否显示预览
+
+                showCaption:true,//是否显示标题
+
+                browseClass:"btn btn-primary", //按钮样式    
+
+               dropZoneEnabled: true,//是否显示拖拽区域
+
+               //minImageWidth: 50, //图片的最小宽度
+
+               //minImageHeight: 50,//图片的最小高度
+
+               //maxImageWidth: 1000,//图片的最大宽度
+
+               //maxImageHeight: 1000,//图片的最大高度
+
+                //maxFileSize:0,//单位为kb，如果为0表示不限制文件大小
+
+               //minFileCount: 0,
+
+                maxFileCount:10, //表示允许同时上传的最大文件个数
+
+                enctype:'multipart/form-data',
+
+               validateInitialCount:true,
+
+                previewFileIcon: "<iclass='glyphicon glyphicon-king'></i>",
+
+               msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+           }).on("fileuploaded", function (event, data, previewId, index){
+ //上传图片后的回调函数，可以在这做一些处理
+                 
+
+});
 </script>
 </body>
 </html>
-    

@@ -62,10 +62,10 @@ div {
 						class="pull-right glyphicon glyphicon-chevron-down"></span>
 					</a>
 					<ul class="nav nav-pills nav-stacked collapse in " id="userSetting">
-						<li><a href="#publish" class="ex0 active"> <i
+						<li><a href="HistoryGoods.duCui" class="ex0 active"> <i
 								class="glyphicon glyphicon-inbox"></i>作为买家
 						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-gift"></i>
+						<li><a href="HistortSeller.docui"> <i class="glyphicon glyphicon-gift"></i>
 								作为卖家
 						</a></li>
 
@@ -146,6 +146,8 @@ div {
 					 </c:forEach> 
 					</br> </br>
 					<form action="OrderServlet?" method='post'>
+					<c:choose>
+					<c:when test="${sessionScope.counts > 0 }">
 					<div class="form-group">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-5">
@@ -159,7 +161,20 @@ div {
 								class="btn btn-danger  col-sm-4 col-md-offset-2 "
 								id="exp_delete_all_btn" value="deleteAll">清空</button>
 						</div>
-					</div>
+					</div>						
+					
+					</c:when>
+					<c:otherwise>
+						<div class="form-group">
+					    <div class="col-sm-3">												
+						</div>					
+						<div class="col-sm-6">					
+							<h4>你的购物车为空！</h4>
+						</div>
+					</div>			
+					</c:otherwise>
+					
+					</c:choose>
 					</form>
 					</br> </br>
 					<div class="form-group">
