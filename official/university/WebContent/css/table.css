@@ -1,0 +1,40 @@
+table.mt caption{
+	font-size: 20px;
+	font-weight: bold;
+}
+#box_p {
+	width: 400px;
+	position: relative;
+	left: 50%;
+	margin-left: -200px; 
+}
+#box_p p {
+	text-align: center;
+	padding: 100px 0px 0px 0px;
+	font-size: 25px;
+	font-weight: bold;
+	color: black;
+}
+table.mt {
+	width: 800px;
+	margin: 15px 20px 20px 20px;
+	border-top: 1px solid deepskyblue;
+	border-spacing: 0px;
+	color: black;
+	/*字体颜色*/
+}
+table.mt thead tr td,table.mt tbody tr td {
+	border-bottom: 1px solid white;
+	padding: 10px 20px;
+	text-align: center;
+}
+table.mt thead tr td {
+	font-weight: bold;
+}
+/*table.mt tbody tr:nth-child(even) {
+	background: lightblue;
+}*/
+table.mt tbody tr td:hover {
+	background: aliceblue;
+	color:black;
+}
