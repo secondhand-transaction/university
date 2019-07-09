@@ -19,4 +19,13 @@
     <servlet-name>HelongxiangServlet</servlet-name>
     <url-pattern>*.doHe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>WanghaoServlet</servlet-name>
+    <servlet-class>servlet.WanghaoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WanghaoServlet</servlet-name>
+    <url-pattern>/servlet/WanghaoServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
