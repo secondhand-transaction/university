@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <%
-	session.setAttribute("user_id", 123);
+	session.setAttribute("user_id", 1);
 %>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>买过的物品界面</title>
+<title>消息列表</title>
 <!--自己的样式-->
 <link rel="stylesheet" type="text/css" href="css/backstage.css">
 <!-- Bootstrap -->
@@ -32,11 +32,12 @@
     <![endif]-->
 </head>
 <body>
-	<header class="wow fadeInRight"> <img src="images/two.jpg" class="img-circle logo"
+<header class="wow fadeInRight"> <img src="images/two.jpg" class="img-circle logo"
 		alt="logo" />
   <div class="desc">校园二手交易系统</div>
 </header>
 <!-- /.container-fluid -->
+
 <div class="container-fluid">
   <div class="row ">
   <!--data-toggle collapse 折叠  ul class =collapse 初始折叠 -->
@@ -54,8 +55,8 @@
         <div> <a href="#userSetting"  data-toggle="collapse"> 
         <i class="glyphicon glyphicon-fire"></i> 历史记录<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a> 
       <ul class="nav nav-pills nav-stacked collapse in " id="userSetting">
-         <li class="active"> <a href="HistoryGoods.doCui"><i class="glyphicon glyphicon-inbox"></i>作为买家</a> </li>
-           <li> <a href="HistorySeller.doCui"> <i class="glyphicon glyphicon-gift"></i> 作为卖家</a> </li>
+        <li> <a href="#publish" class="ex0 active"> <i class="glyphicon glyphicon-inbox"></i>作为买家</a> </li>
+           <li> <a href="#"> <i class="glyphicon glyphicon-gift"></i> 作为卖家</a> </li>
 
       </ul>
     </div>
@@ -64,7 +65,7 @@
         <div> <a href="#sellSetting"  data-toggle="collapse"> 
 		<i class="glyphicon glyphicon-asterisk"></i> 信息中心<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a> 
       <ul class="nav nav-pills nav-stacked collapse in " id="sellSetting">
-        <li> <a href="#publish" class="ex0 active"> <i class="glyphicon glyphicon-pencil"></i> 用户留言 </a> </li>
+        <li class="active"> <a href="GoToMessagelist.doHe" class="ex0 active"> <i class="glyphicon glyphicon-pencil"></i> 用户留言 </a> </li>
            <li> <a href="#"> <i class="glyphicon glyphicon-barcode"></i> 管理员通知</a> </li>
         <li> <a href="#"> <i class="glyphicon glyphicon-euro"></i> 系统通知</a> </li>
 
@@ -74,31 +75,28 @@
 		<i class="glyphicon glyphicon-asterisk"></i>返回主页 </a> 
     </div>
   </div>
-
-
-			<div class=" col-md-8 publish wow fadeInUp" id="right">
+ 
+    
+    <div class=" col-md-8 publish wow fadeInUp" id="right">
 				<table class="mt">
 					<tbody>
 						<tr>
-							<td>商品名字</td>
-							<td>商品描述</td>
-							<td>卖家</td>
-							<td>价格</td>
+							<td>发送方</td>
+							<td>消息条数</td>
+							<td>最后消息发送时间</td>
 							<td>状态</td>
-							<td>确认</td>
-							<td>取消</td>
+							<td>回复</td>
+
 						</tr>
-							<c:forEach items="${ListGoods}" var="Listgoods">
+							<c:forEach items="${messageList}" var="message">
 							<tr>
-								<td>${Listgoods.getGoods().getGoods_name()}</td>
-								<td>${Listgoods.getGoods().getDescription()}</td>
-								<td>${Listgoods.getGoods().getUser_id()}</td>
-								<td>${Listgoods.getGoods().getPrice()}</td>
-								<td><c:if test="${Listgoods.getOrderItem().getOrderItem_status() eq '2'}">已完成</c:if>
-									<c:if test="${Listgoods.getOrderItem().getOrderItem_status() eq '0'|| Listgoods.getOrderItem().getOrderItem_status() eq '1'}">未完成</c:if>
+								<td>${message.getSeller_name()}</td>
+								<td>${message.getInformation_num}</td>
+								<td>${message.getDate}</td>
+								<td><c:if test="${message.getStatus eq '1'}">已读</c:if>
+									<c:if test="${message.getStatus eq '0'}">未读</c:if>
 								</td>
-								<td><c:if test="${Listgoods.getOrderItem().getOrderItem_status() eq '0'|| Listgoods.getOrderItem().getOrderItem_status() eq '1'}"><input type="submit" value="确定" onclick="myFunction()"/></c:if></td>
-								<td>未设定</td>
+								<td><a href="GoToMessage.doHe?id=${message.getSeller_id()}">回复</a></td>
 						</tr>
 						</c:forEach>
 					</tbody>
@@ -111,22 +109,9 @@
 					<li><a href="?start=${last}" class="href">last</a></li>
 				</ul>
 			</div>
-		</div>
-	</div>
-	</div>
-	<script src="js/wow.min.js"></script>
-	<script>
-		$(function() {
+    </div>
+</div>
 
-			new WOW().init();
-		})
-	</script>
-	<script type="text/javascript">
-
-	function myFunction(){
-    alert('成功确定!')
-    }
-    </script>
 
 </body>
 </html>
