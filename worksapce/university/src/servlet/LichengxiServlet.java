@@ -33,7 +33,7 @@ public class LichengxiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -45,15 +45,14 @@ public class LichengxiServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
 		
+		
 		HttpSession session=request.getSession();
 		int user_id=(int)session.getAttribute("user_id");
-		//String user_ids = request.getParameter("user_id");
-		//int  user_id = Integer.parseInt(user_ids);
 		
 		LichengxiDAO a = new LichengxiDAO();
 		boolean judge;
 		try {
-			judge = a.UpdateUserState(user_id);
+			judge = a.UpdateUserStatus(user_id);
 			if(judge==false) {
 				out.print("<script>alert('…Í«Î ß∞‹£°');window.location='  ';</script>");
 			}

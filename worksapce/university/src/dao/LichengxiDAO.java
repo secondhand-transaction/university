@@ -26,11 +26,11 @@ public class LichengxiDAO {
 			return conn;
 	} 
 	
-	public boolean UpdateUserState(int user_id) throws SQLException{
+	public boolean UpdateUserStatus(int user_id) throws SQLException{
 		Connection conn = getCon();
 		try {
 			Statement stmt = conn.createStatement();
-			String sql="update user set user_state = 1 where user_id="+user_id;
+			String sql="update user set user_status = 1 where user_id="+user_id;
 			int judge = stmt.executeUpdate(sql);
 			if ( judge == 1) return true;
 			else return false;

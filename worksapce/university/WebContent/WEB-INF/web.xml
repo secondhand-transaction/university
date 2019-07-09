@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>librarys</display-name>
+  <display-name>university</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -11,21 +11,12 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>HelongxiangServlet</display-name>
-    <servlet-name>HelongxiangServlet</servlet-name>
-    <servlet-class>servlet.HelongxiangServlet</servlet-class>
+    <display-name>LichengxiServlet</display-name>
+    <servlet-name>LichengxiServlet</servlet-name>
+    <servlet-class>servlet.LichengxiServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelongxiangServlet</servlet-name>
-    <url-pattern>*.doHe</url-pattern>
+    <servlet-name>LichengxiServlet</servlet-name>
+    <url-pattern>/LichengxiServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>WanghaoServlet</servlet-name>
-    <servlet-class>servlet.WanghaoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>WanghaoServlet</servlet-name>
-    <url-pattern>/servlet/WanghaoServlet</url-pattern>
-  </servlet-mapping>
-
 </web-app>
