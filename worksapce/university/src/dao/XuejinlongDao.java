@@ -44,6 +44,28 @@ public class XuejinlongDao {
 		}
 	}
 	
+	public void verify(User user) {
+		try {
+			Connection conn = DBHelper.getInstance().getConnection();
+			String sql = "update user set user_name=?,user_password=?,phone=?,user_number=?,email=?,user_status=? where user_id="+user.getUser_id();
+			ps = conn.prepareStatement(sql);
+			
+			int status = 1;
+			ps.setString(1, user.getUser_name());
+			ps.setString(2, user.getPassword());
+			ps.setInt(3, user.getPhone());
+			ps.setInt(4, user.getUser_number());
+			ps.setString(5, user.getEmail());
+			ps.setInt(6, status);
+			
+			ps.execute();
+			DBHelper.closeConnection(conn, ps, rs);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public void xiaJia(Goods good) {
 		try {
 			Connection conn = DBHelper.getInstance().getConnection();
@@ -223,6 +245,43 @@ public class XuejinlongDao {
 				user.setUser_status(status);
 				
 				System.out.println("find all user");
+				users.add(user);
+			}
+			DBHelper.closeConnection(conn, ps, rs);
+		} catch (SQLException e) {
+			// TODO: handle 
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	public List<User> findAllAuditedUser() {
+		List<User> users = new ArrayList<User>();
+		User user = null;
+		String sql = "select * from user where user_status = 1";
+		try {
+			Connection conn = DBHelper.getInstance().getConnection();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				user = new User();
+				int id = rs.getInt("user_id");
+				String name = rs.getString("user_name");
+				String password = rs.getString("user_password");
+				int phone = rs.getInt("phone");
+				int user_number = rs.getInt("user_number");
+				String email = rs.getString("email");
+				int status = rs.getInt("user_status");
+				
+				user.setUser_id(id);
+				user.setUser_name(name);
+				user.setPassword(password);
+				user.setPhone(phone);
+				user.setUser_number(user_number);
+				user.setEmail(email);
+				user.setUser_status(status);
+				
+				System.out.println("find all audited user");
 				users.add(user);
 			}
 			DBHelper.closeConnection(conn, ps, rs);

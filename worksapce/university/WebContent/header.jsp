@@ -69,6 +69,9 @@
 						<li><a
 							href="${pageContext.request.contextPath}/servlet/ManagementServlet?op=listUsers" id="p9">Query
 								User</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/servlet/ManagementServlet?op=listAudited" id="p9">List
+								AuditedUser</a></li>
 					</ul></li>
 					
 				<%-- <li><a

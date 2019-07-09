@@ -37,6 +37,8 @@
 						onclick="javascript:window.location.href='${pageContext.request.contextPath}/editUser.jsp?userId=${aa.user_id}'">Edit</button>
 					<button type="submit" class="btn btn-danger"
 						onclick="javascript:window.location.href='${pageContext.request.contextPath}/servlet/ManagementServlet?op=delUser&userId=${aa.user_id}'">Delete</button>
+				    <button type="submit" class="btn btn-success"
+						onclick="javascript:window.location.href='${pageContext.request.contextPath}/servlet/ManagementServlet?op=verify&userId=${b.user_id}'">Verify</button>
 				</td>
 			</tr>
 	</table>

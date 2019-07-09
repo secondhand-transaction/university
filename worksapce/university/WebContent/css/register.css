@@ -55,18 +55,9 @@ header{
 .form-group{
 	float:left;
 	margin:60px;
-	padding-left: 10%;
-    margin-left: 17% !important;
-    margin-bottom: 0px;
-    margin-right: 0px !important;
+	padding-left:180px;
 }
 .help-block{
 	color:#FFA500;
 	font-size:17px;
 }
-
-.col-sm-11 , .col-sm-12 {
-	width: 60% !important;
-	}
-	
-	

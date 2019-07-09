@@ -46,6 +46,8 @@ public class ManagementServlet extends HttpServlet{
 			}
 		}else if ("listBeiJuBao".equals(option)) {
 			listBeiJuBao(request,response);
+		}else if ("listAudited".equals(option)) {
+			listAudited(request,response);
 		}else if ("listXiaJia".equals(option)) {
 			listXiaJia(request,response);
 		}else if ("listNormal".equals(option)) {
@@ -64,10 +66,28 @@ public class ManagementServlet extends HttpServlet{
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
+		}else if ("verify".equals(option)) {
+			try {
+				verify(request,response);
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
 		
 	}
 	
+	
+
+	private void verify(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		// TODO 自动生成的方法存根
+		int id = Integer.valueOf(request.getParameter("userId"));
+		User user = xue.findUserById(id);
+		xue.verify(user);
+		request.getRequestDispatcher("/servlet/ManagementServlet?op=listUsers").forward(request, response);
+		
+	}
+
 	private void recover(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 		// TODO 自动生成的方法存根
 		int id = Integer.valueOf(request.getParameter("goodsId"));
@@ -159,6 +179,13 @@ public class ManagementServlet extends HttpServlet{
 		request.setAttribute("a", users);
 		request.getRequestDispatcher("/listUsers.jsp").forward(request, response);
 		
+	}
+	
+	private void listAudited(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO 自动生成的方法存根
+		List<User> users = xue.findAllAuditedUser();
+		request.setAttribute("audited", users);
+		request.getRequestDispatcher("/listAudited.jsp").forward(request, response);
 	}
 	private void listBeiJuBao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO 自动生成的方法存根
