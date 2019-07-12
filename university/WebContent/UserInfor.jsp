@@ -103,21 +103,21 @@
 					<div class="form-group">
 						<label class="col-sm-2">我的昵称:</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="title" name="user_name" value="${requestScope.user.user_name}">
+							<input type="text" required="required" class="form-control" id="title" name="user_name" value="${requestScope.user.user_name}">
 							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2">我的邮箱:</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="title2" name="email" value="${requestScope.user.email}">
+							<input type="text"  required="required" class="form-control" id="title2" name="email" value="${requestScope.user.email}">
 							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2">我的电话:</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="title3"name="phone" value="${requestScope.user.phone}">
+							<input type="text" required="required" class="form-control" id="title3"name="phone" value="${requestScope.user.phone}">
 							<span class="help-block"></span>
 						</div>
 					</div>
@@ -131,4 +131,14 @@
 	</div>
 
 </body>
+<script>
+$(document).ready(function() {
+
+    $('#exp_delete_all_btn').click(function() {
+        console.log("success");
+        $("input[type='text']").attr('value', "");
+
+    });
+});
+</script>
 </html>

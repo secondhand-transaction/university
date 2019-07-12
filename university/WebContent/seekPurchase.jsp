@@ -81,7 +81,7 @@
 						<li><a href="HistoryGoods.doCui" class="ex0 active"> <i
 								class="glyphicon glyphicon-inbox"></i>作为买家
 						</a></li>
-						<li><a href="HistortSeller.doCui"> <i
+						<li><a href="HistorySeller.doCui"> <i
 								class="glyphicon glyphicon-gift"></i> 作为卖家
 						</a></li>
 

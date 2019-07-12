@@ -113,9 +113,11 @@ wow fadeInRight
                     if(data == 0){
                         //如果返回0，说明用户名不重复，可以使用
                         span1.innerHTML = "用户名可以使用！";
+                        $('input').eq(0).next("span").css("color", '#FFA500');
                     }else{
                         //说明用户名重复，不能使用
                         span1.innerHTML = "用户名已经被注册！";
+                        $('input').eq(0).next("span").css("color", 'red');
                     }
                 }
             }
@@ -154,8 +156,8 @@ new WOW().init();
 		//密码
 		$('input').eq(2).focus(function() {
 			if ($(this).val().length == 0) {
-				$(this).next("span").text("请输入密码");
-				$(this).next("span").css("color", '#FFA500');
+				$('input').eq(3).next("span").text("请输入密码");
+				$('input').eq(3).next("span").css("color", '#FFA500');
 			}
 		});
 		//确认密码
@@ -186,10 +188,7 @@ new WOW().init();
 			if ($(this).val().length == 0) {
 				$(this).next("span").text("");
 				$(this).next("span").css("color", '#FFA500');
-			} else if ($(this).val().length > 3 && $(this).val().length < 6) {
-				$(this).next("span").text("长度只能在4-20个字符之间");
-				$(this).next("span").css("color", 'red');
-			} else {
+			}else {
 				$(this).next("span").text("");
 			}
 
@@ -207,13 +206,10 @@ new WOW().init();
 		//密码：
 		$('input').eq(2).blur(function() {
 			if ($(this).val().length == 0) {
-				$(this).next("span").text("");
-				$(this).next("span").css("color", '#FFA500');
-			} else if ($(this).val().length > 3 && $(this).val().length < 6) {
-				$(this).next("span").text("长度只能在6-20个字符之间");
-				$(this).next("span").css("color", 'red');
+				$('input').eq(3).next("span").text("");
+				$('input').eq(3).next("span").css("color", '#FFA500');
 			} else {
-				$(this).next("span").text("");
+				$('input').eq(3).next("span").text("");
 			}
 
 		});
@@ -238,7 +234,10 @@ new WOW().init();
 			} else if ($(this).val().length > 6 && $(this).val().length < 10) {
 				$(this).next("span").text("长度只能在6-20个字符之间");
 				$(this).next("span").css("color", 'red');
-			} else {
+			}else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value))){
+				$(this).next("span").text("请输入一个有效的邮件地址");
+				$(this).next("span").css("color", 'red');
+			}else {
 				$(this).next("span").text("");
 			}
 
@@ -278,17 +277,43 @@ new WOW().init();
 					$('input').eq(j).focus();
 					if (j == 6) {
 						$('input').eq(j).next("span").text("此处不能为空");
-						$('input').eq(j).next("span").css("color", '#FFA500');
+						$('input').eq(j).next("span").css("color", 'red');
 						e.preventDefault();
 						return;
 					}
 
 					$('input').eq(j).next("span").text("此处不能为空");
-					$('input').eq(j).next("span").css("color", '#FFA500');
+					$('input').eq(j).next("span").css("color", 'red');
 					e.preventDefault();
 					return;
 				}
 			}
+			//////
+			if(isNaN($('input').eq(0).val())){
+				$('input').eq(0).next("span").text("用户名只能为数字");
+				$('input').eq(0).next("span").css("color", 'red');
+				e.preventDefault();
+				return;
+			}
+			if(parseInt($('input').eq(0).val().substr(1,3))>214 && $('input').eq(0).val().length==10){
+				$('input').eq(0).next("span").text("用户名必须小于2140000000");
+				$('input').eq(0).next("span").css("color", 'red');
+				e.preventDefault();
+				return;
+		    }
+			if($('input').eq(0).val().length<6 || $('input').eq(0).val().length>10){
+				$('input').eq(0).next("span").text("用户名只能为6-10位");
+				$('input').eq(0).next("span").css("color", 'red');
+				e.preventDefault();
+				return;
+			}
+			if($('input').eq(2).val().length<6){
+				$('input').eq(3).next("span").text("密码必须大于等于6位");
+				$('input').eq(3).next("span").css("color", 'red');
+				e.preventDefault();
+				return;
+			}
+			
 		});
 		
 		/*

@@ -55,16 +55,18 @@ body {
 	margin: 0 auto;
 }
 .box {
-	padding: 15px 0 0 15px;
+	padding: 15px 15px 15px 15px;
 	float: left;
 }
 .pic {
+	
 	padding: 10px;
 	border: 1px solid #ccc;
 	box-shadow: 0 0 6px #ccc;
 	border-radius: 5px;
 }
 .pic img {
-	width: 280px;
+	
+	width: 380px;
 	height: auto;
 }

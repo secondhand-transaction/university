@@ -96,19 +96,21 @@ public class OrderServlet extends HttpServlet {
             String orderItem_id = request.getParameter("OrderItemID"); 
             String goods_id = request.getParameter("GoodsID"); 
             cDAO.buyersuer(orderItem_id, goods_id);
-            request.getRequestDispatcher("HistoryGoods.doCui").forward(request, response);
+            response.sendRedirect("HistoryGoods.doCui");
+  //          request.getRequestDispatcher("HistoryGoods.doCui").forward(request, response);
             
 		} else if (kind.equals("buyercancel")) {
             String orderItem_id = request.getParameter("OrderItemID"); 
             String goods_id = request.getParameter("GoodsID"); 
-			cDAO.buyercancel(orderItem_id, goods_id);
+			cDAO.buyercancel(orderItem_id, goods_id);			
             request.getRequestDispatcher("AddInformationSystem.doHe").forward(request, response);
 			
 		} else if (kind.equals("sellersure")) {
      
             String goods_id = request.getParameter("GoodsID"); 
 			cDAO.sellersure( goods_id);
-            request.getRequestDispatcher("HistorySeller.doCui").forward(request, response);
+			response.sendRedirect("HistorySeller.doCui");
+   //         request.getRequestDispatcher("HistorySeller.doCui").forward(request, response);
 		} else if (kind.equals("sellercancel")) {
    
             String goods_id = request.getParameter("GoodsID"); 

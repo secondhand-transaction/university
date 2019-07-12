@@ -18,7 +18,7 @@ $(window).on('load',function(){
 	};
 		$(window).on('scroll',function(){
 			if(checkScrollSlide){
-				$.each(dataInt.data,function(key,value){
+				$.each(dataInt.data,function(key,value){/*
 					var oBox=$('<div>').addClass('box').appendTo($('#main'));
 					var oPic=$('<div>').addClass('pic').appendTo($(oBox));
 					var oimg=$('<img>').attr('src','./images/'+$(value).attr('src')).appendTo($(oPic));
@@ -35,7 +35,7 @@ $(window).on('load',function(){
 					
 					
 					
-			
+			*/
 		
 				});
 				waterfall();

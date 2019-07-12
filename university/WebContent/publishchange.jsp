@@ -43,9 +43,14 @@
 				<!--ul id  和 上面a 标签的id对应 所以能够弹出li -->
 				<ul id="systemSetting"
 					class="nav nav-pills nav-stacked collapse in ">
-					<li><a href="UserInfor.jsp"><i class="glyphicon glyphicon-user"></i>个人信息</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-home"></i>购物车</a></li>
-					<li  class="active"><a href="#"><i class="glyphicon glyphicon-edit"></i>修改产品</a></li>
+					<li><a href="GetUserInfor.doHao"><i class="glyphicon glyphicon-user"></i>个人信息</a></li>
+					<li><li ><a href="cart.jsp" class="ex0 active"><i
+								class="glyphicon glyphicon-home"></i>购物车</a></li>
+						<li><a href="publish.jsp"><i
+								class="glyphicon glyphicon-edit"></i>发布产品</a></li>
+						<li class="active"><a href="seekPurchase.jsp"> <i
+								class="glyphicon glyphicon-book"></i> 我要求购
+						</a></li>
 				</ul>
 				</br>
 				<!--data-toggle collapse 折叠   collapse in 初始不折叠-->
@@ -55,9 +60,10 @@
 						class="pull-right glyphicon glyphicon-chevron-down"></span>
 					</a>
 					<ul class="nav nav-pills nav-stacked collapse in " id="userSetting">
-						<li><a href="#"><i
-								class="glyphicon glyphicon-inbox"></i>作为买家</a></li>
-						<li><a href=""> <i
+						<li><a href="HistoryGoods.doCui" class="ex0 active"> <i
+								class="glyphicon glyphicon-inbox"></i>作为买家
+						</a></li>
+						<li><a href="HistorySeller.doCui"> <i
 								class="glyphicon glyphicon-gift"></i> 作为卖家
 						</a></li>
 
@@ -70,25 +76,22 @@
 						class="glyphicon glyphicon-asterisk"></i> 信息中心<span
 						class="pull-right glyphicon glyphicon-chevron-down"></span>
 					</a>
-					<ul class="nav nav-pills nav-stacked collapse in " id="sellSetting">
-						<li><a href="#publish" class="ex0 active"> <i
-								class="glyphicon glyphicon-pencil"></i> 用户留言
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-barcode"></i>
-								管理员通知
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-euro"></i>
+					<ul class="nav nav-pills nav-stacked collapse in " id="sellSetting">						
+						<li><a href="GoToMessagelist.doHe" class="ex0 active"> <i
+								class="glyphicon glyphicon-pencil"></i> 留言
+						</a></li>													
+						<li><a href="GoToMessagelistSystem.doHe"> <i class="glyphicon glyphicon-euro"></i>
 								系统通知
 						</a></li>
 
 					</ul>
 				</div>
 				<div>
-					<a href="index.html" data-toggle="collapse"> <i
-						class="glyphicon glyphicon-asterisk"></i>返回主页
+					<a href="shop.do"> 返回主页
 					</a>
 				</div>
 			</div>
+
  
     
     <!-- 显示表格数据 -->

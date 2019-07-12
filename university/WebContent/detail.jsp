@@ -31,7 +31,7 @@
 
 .location1 {
 	position: relative;
-	left: 300px;
+	left: 400px;
 	top: -250px;
 	padding-left: 68px;
 	font-weight: bold;
@@ -126,13 +126,21 @@
 						<i class="glyphicon glyphicon-user"></i>&nbsp;卖家ID:${good.user_id}
 						<br />
 					</p>
+					
 					<form action="OrderServlet?ID=${good.user_id}" method='post'>
 						<i class="glyphicon glyphicon-th-list"></i>&nbsp;
 						<button name="submit" value="record" type="submit">查看卖家</button>
 					</form>
-					
-						<i class="glyphicon glyphicon-th-list"></i>&nbsp;
+					<c:choose>
+					    <c:when test="${sessionScope.user_id eq good.user_id }">~~~~
+						</c:when>
+						
+						<c:otherwise >
+							<i class="glyphicon glyphicon-th-list"></i>&nbsp;
 						<a href="GoToMessage.doHe?id=${good.user_id}">联系卖家</a>
+						</c:otherwise>
+					</c:choose>
+						
 						
 					
 				</div>
@@ -152,6 +160,8 @@
 					</p>
 					<i class="glyphicon glyphicon-heart"></i>&nbsp;
 					<c:choose>
+					    <c:when test="${sessionScope.user_id eq good.user_id }">这是你发布的</br>
+						</c:when>
 						<c:when test="${sessionScope.counts eq 5 }">购物车达上限(5)</br>
 						</c:when>
 						<c:when test="${good.goods_status eq 1 }">被举报下架</br>

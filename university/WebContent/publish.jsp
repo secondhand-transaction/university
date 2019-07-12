@@ -106,24 +106,24 @@
 
 			<div class=" col-md-8 publish wow fadeInUp" id="right">
 				<!-- 将数据appendTo tbody 定义id -->
-				<form class="form-horizontal" action="publishgoods.doCui" method="post">
+				<form class="form-horizontal" id="check" action="publishgoods.doCui" method="post">
 					<div class="form-group">
-						<label class="col-sm-2">商品名称:</label>
+						<label class="col-sm-2" >商品名称:</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="title"
-								name="goods_name"> <span class="help-block"></span>
+								name="goods_name" required="required"> <span class="help-block" ></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2">商品价格:</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="title2" name="price">
+							<input type="text" class="form-control" id="title2" name="price" required="required">
 							<span class="help-block"></span>
 						</div>
 					</div>
 			        
 			        <div class="form-group">
-			          <label  class="col-sm-2">商品分类:</label>
+			          <label  class="col-sm-2" required>商品分类:</label>
 			          <div class="col-sm-3">
 			          	<select name="categoryId" class="selectpicker" >
 							<c:forEach items="${cs}" var="c">
@@ -134,9 +134,9 @@
 			        </div>
         
 					<div class="form-group">
-						<label class="col-sm-2">商品详情:</label>
+						<label class="col-sm-2" >商品详情:</label>
 						<div class="col-sm-7">
-							<textarea rows="3" cols="70" name="description"></textarea>
+							<textarea rows="3" cols="70" name="description" required="required"></textarea>
 							<span class="help-block"></span>
 						</div>
 					</di>
@@ -153,7 +153,7 @@
 						<br /> <br />
                         <c:if test="${sessionScope.user.user_status eq '1'}">
 						<button type="submit"
-							class="btn btn-primary  col-sm-2 col-md-offset-2"  onclick="displayDate()">下一步</button>
+							class="btn btn-primary  col-sm-2 col-md-offset-2"  onclick="displayDate()" id=confirm>下一步</button>
 						<button type="reset" class="btn btn-danger col-sm-2 "
 							id="exp_delete_all_btn">重置</button>
 							</c:if>
@@ -173,4 +173,17 @@
 		</div>
 	</div>
 </body>
+<script>
+
+
+	
+$(document).ready(function() {
+
+    $('#exp_delete_all_btn').click(function() {
+        console.log("success");
+        $("input[type='text']").attr('value', "");
+
+    });
+});
+</script>
 </html>

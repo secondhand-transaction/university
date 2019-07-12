@@ -347,7 +347,8 @@ public class HelongxiangServlet extends HttpServlet{
 			}else {
 				System.out.print("失败");
 			}
-			request.getRequestDispatcher("HistoryGoods.doCui").forward(request, response);
+			response.sendRedirect("HistoryGoods.doCui");
+		//	request.getRequestDispatcher("HistoryGoods.doCui").forward(request, response);
 			
 			
 			
@@ -379,8 +380,8 @@ public class HelongxiangServlet extends HttpServlet{
 			}else {
 				System.out.print("失败");
 			}
-			
-			request.getRequestDispatcher("HistorySeller.doCui").forward(request, response);
+			response.sendRedirect("HistorySeller.doCui");
+		//	request.getRequestDispatcher("HistorySeller.doCui").forward(request, response);
 			}
 						
 	}

@@ -157,13 +157,7 @@ document.write(parseInt(200*Math.random()));</script>
 
 
 
-<script type="text/javascript">
-function out(){	
 
-location.herf="detail.jsp";
-
-}
-</script>
 <div id="main">
 
 		<c:forEach items="${goods}" var="good" varStatus="gd">
@@ -208,7 +202,7 @@ document.write(parseInt(200*Math.random()));</script>
 <script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
 <script src="${pageContext.request.contextPath}/js/sidebarDemo2.js"></script>
-<script>
+<!-- <script>
   function GetRTime(){
        var EndTime= new Date('2018/06/28 00:00:00');//这里设置你预定的时间
        var NowTime = new Date();
@@ -228,7 +222,7 @@ document.write(parseInt(200*Math.random()));</script>
   
 
 
-</script> 
+</script>  -->
  <script>
     /*jshint expr: true */
     /*jslint evil: true */  
